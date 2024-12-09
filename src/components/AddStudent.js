@@ -35,15 +35,19 @@ const AddStudent = () => {
     const studentAge = ageInput.value.trim();
     const studentMajor = majorSelect.value;
 
-    const newStudent = `${studentName} (Age: ${studentAge}, Major: ${studentMajor})`;
-    const { students } = stateManager.getState();
-    stateManager.setState({
-      students: [...students, newStudent],
-    });
+    if (studentName && studentAge && studentMajor) {
+      const newStudent = `${studentName} (Age: ${studentAge}, Major: ${studentMajor})`;
+      const { students } = stateManager.getState();
+      stateManager.setState({
+        students: [...students, newStudent],
+      });
 
-    nameInput.value = "";
-    ageInput.value = "";
-    majorSelect.selectedIndex = 0;
+      nameInput.value = "";
+      ageInput.value = "";
+      majorSelect.selectedIndex = 0;
+    } else {
+      alert("Please fill in all fields.");
+    }
   });
 
   addStudentDiv.appendChild(nameInput);
