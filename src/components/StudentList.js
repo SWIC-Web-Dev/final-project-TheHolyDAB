@@ -25,8 +25,10 @@ const StudentList = () => {
       deleteButton.className =
         "bg-red-500 text-white p-1 rounded hover:bg-red-600 transition";
       deleteButton.addEventListener("click", () => {
-        const updatedStudents = students.filter((_, i) => i !== index);
-        stateManager.setState({ students: updatedStudents });
+        if (window.confirm(`Are you sure you want to delete ${student}?`)) {
+          const updatedStudents = students.filter((_, i) => i !== index);
+          stateManager.setState({ students: updatedStudents });
+        }
       });
 
       studentItem.appendChild(deleteButton);
